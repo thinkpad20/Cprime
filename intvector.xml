@@ -1,0 +1,436 @@
+<tokens>
+<preprocessorDirective> #include <stdio.h>
+ </preprocessorDirective>
+<preprocessorDirective> #include <stdlib.h>
+ </preprocessorDirective>
+<keyword> struct </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> IntVector </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+	 </whiteSpace>
+<keyword> @vars </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<identifier> size_t </identifier>
+<whiteSpace>   </whiteSpace>
+<identifier> size </identifier>
+<symbol> ; </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<identifier> size_t </identifier>
+<whiteSpace>   </whiteSpace>
+<identifier> maxSize </identifier>
+<symbol> ; </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<keyword> int </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> * </symbol>
+<identifier> array </identifier>
+<symbol> ; </symbol>
+<whiteSpace> 
+	 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+	 </whiteSpace>
+<keyword> @functions </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<identifier> IntVector </identifier>
+<symbol> ( </symbol>
+<keyword> unsigned </keyword>
+<whiteSpace>   </whiteSpace>
+<keyword> long </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> size </identifier>
+<symbol> ) </symbol>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<identifier> size </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> = </symbol>
+<whiteSpace>   </whiteSpace>
+<numberConstant> 0 </numberConstant>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<identifier> maxSize </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> = </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> size </identifier>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<identifier> array </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> = </symbol>
+<whiteSpace>   </whiteSpace>
+<keyword> new </keyword>
+<symbol> ( </symbol>
+<keyword> int </keyword>
+<symbol> , </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> size </identifier>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<symbol> ~ </symbol>
+<identifier> IntVector </identifier>
+<symbol> ( </symbol>
+<symbol> ) </symbol>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> delete </keyword>
+<symbol> ( </symbol>
+<identifier> array </identifier>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<keyword> void </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> insert </identifier>
+<symbol> ( </symbol>
+<identifier> size_t </identifier>
+<whiteSpace>   </whiteSpace>
+<identifier> index </identifier>
+<symbol> , </symbol>
+<whiteSpace>   </whiteSpace>
+<keyword> int </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> val </identifier>
+<symbol> ) </symbol>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> if </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> ( </symbol>
+<identifier> index </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> &lt; </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> size </identifier>
+<symbol> ) </symbol>
+<whiteSpace> 
+				 </whiteSpace>
+<identifier> array </identifier>
+<symbol> [ </symbol>
+<identifier> index </identifier>
+<symbol> ] </symbol>
+<whiteSpace>   </whiteSpace>
+<symbol> = </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> val </identifier>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> else </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+				 </whiteSpace>
+<identifier> fprintf </identifier>
+<symbol> ( </symbol>
+<identifier> stderr </identifier>
+<symbol> , </symbol>
+<whiteSpace>   </whiteSpace>
+<stringConstant> Error: array index %d out of bounds\n </stringConstant>
+<symbol> , </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> index </identifier>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+				 </whiteSpace>
+<identifier> exit </identifier>
+<symbol> ( </symbol>
+<numberConstant> 1 </numberConstant>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<keyword> int </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> get </identifier>
+<symbol> ( </symbol>
+<identifier> size_t </identifier>
+<whiteSpace>   </whiteSpace>
+<identifier> index </identifier>
+<symbol> ) </symbol>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> if </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> ( </symbol>
+<identifier> index </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> &lt; </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> size </identifier>
+<symbol> ) </symbol>
+<whiteSpace> 
+				 </whiteSpace>
+<keyword> return </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> array </identifier>
+<symbol> [ </symbol>
+<identifier> index </identifier>
+<symbol> ] </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> else </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+				 </whiteSpace>
+<identifier> fprintf </identifier>
+<symbol> ( </symbol>
+<identifier> stderr </identifier>
+<symbol> , </symbol>
+<whiteSpace>   </whiteSpace>
+<stringConstant> Error: array index %d out of bounds\n </stringConstant>
+<symbol> , </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> index </identifier>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+				 </whiteSpace>
+<identifier> exit </identifier>
+<symbol> ( </symbol>
+<numberConstant> 1 </numberConstant>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<keyword> int </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> pop_back </identifier>
+<symbol> ( </symbol>
+<symbol> ) </symbol>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> int </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> retval </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> = </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> array </identifier>
+<symbol> [ </symbol>
+<identifier> size </identifier>
+<numberConstant> -1 </numberConstant>
+<symbol> ] </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<identifier> size </identifier>
+<symbol> -- </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> if </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> ( </symbol>
+<identifier> size </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> <= </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> maxSize </identifier>
+<symbol> / </symbol>
+<numberConstant> 2 </numberConstant>
+<symbol> ) </symbol>
+<whiteSpace> 
+				 </whiteSpace>
+<identifier> resize </identifier>
+<symbol> ( </symbol>
+<identifier> maxSize </identifier>
+<symbol> / </symbol>
+<numberConstant> 2 </numberConstant>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> return </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> retval </identifier>
+<symbol> ; </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<keyword> void </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> push_back </identifier>
+<symbol> ( </symbol>
+<keyword> int </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> val </identifier>
+<symbol> ) </symbol>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> if </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> ( </symbol>
+<identifier> size </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> == </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> maxSize </identifier>
+<symbol> ) </symbol>
+<whiteSpace> 
+				 </whiteSpace>
+<identifier> resize </identifier>
+<symbol> ( </symbol>
+<identifier> maxSize </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> * </symbol>
+<whiteSpace>   </whiteSpace>
+<numberConstant> 2 </numberConstant>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<identifier> array </identifier>
+<symbol> [ </symbol>
+<identifier> size </identifier>
+<symbol> ] </symbol>
+<whiteSpace>   </whiteSpace>
+<symbol> = </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> val </identifier>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<identifier> size </identifier>
+<symbol> ++ </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<keyword> void </keyword>
+<whiteSpace>   </whiteSpace>
+<identifier> resize </identifier>
+<symbol> ( </symbol>
+<identifier> size_t </identifier>
+<whiteSpace>   </whiteSpace>
+<identifier> newSize </identifier>
+<symbol> ) </symbol>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> int </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> * </symbol>
+<identifier> temp </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> = </symbol>
+<whiteSpace>   </whiteSpace>
+<keyword> renew </keyword>
+<symbol> ( </symbol>
+<identifier> array </identifier>
+<symbol> , </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> newSize </identifier>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<keyword> if </keyword>
+<whiteSpace>   </whiteSpace>
+<symbol> ( </symbol>
+<symbol> ! </symbol>
+<identifier> temp </identifier>
+<symbol> ) </symbol>
+<whiteSpace>   </whiteSpace>
+<symbol> { </symbol>
+<whiteSpace> 
+				 </whiteSpace>
+<identifier> fprintf </identifier>
+<symbol> ( </symbol>
+<identifier> stderr </identifier>
+<symbol> , </symbol>
+<whiteSpace>   </whiteSpace>
+<stringConstant> Error: memory allocation failure\n </stringConstant>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+				 </whiteSpace>
+<identifier> exit </identifier>
+<symbol> ( </symbol>
+<numberConstant> 1 </numberConstant>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<identifier> array </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> = </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> temp </identifier>
+<symbol> ; </symbol>
+<whiteSpace> 
+			 </whiteSpace>
+<identifier> maxSize </identifier>
+<whiteSpace>   </whiteSpace>
+<symbol> = </symbol>
+<whiteSpace>   </whiteSpace>
+<identifier> size </identifier>
+<symbol> ; </symbol>
+<whiteSpace> 
+		 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+	 </whiteSpace>
+<symbol> } </symbol>
+<whiteSpace> 
+ </whiteSpace>
+<symbol> } </symbol>
+</tokens>
+
