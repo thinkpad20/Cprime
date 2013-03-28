@@ -1,5 +1,5 @@
-C' (C prime) - a minimal extension to C
-=======================================
+C' (C prime) - a minimal object-oriented extension to C
+=======================================================
 
 C is great and all, but sometimes you just want to have some of the conveniences of C++. However, C++ in its full-fledged form is so complicated as to often be inconvenient. This language represents an attempt at something half-way. Initially, I'll only take only the following from C++:
 
@@ -313,7 +313,7 @@ void IntVector_push_back(struct IntVector *s, int val) {
 }
 
 void IntVector_resize(struct IntVector *s, size_t size) {
-	int *temp = realloc(s->array, sizeof(int) * size);
+	int *temp = Realloc(s->array, sizeof(int) * size);
 	if (!temp) {
 		fprintf(stderr, "Error: memory allocation failure\n");
 		exit(1);

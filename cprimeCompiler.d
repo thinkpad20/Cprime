@@ -252,12 +252,14 @@ Entry getCEnum() {
 	Entry newEnum = new Entry(); // this might not be returned, if no variable is declared
 	string enumTypeName;
 	string enumName; // name of the variable
-
+	cPrimeType cpt;
 	demand("enum");
 
-	if (isTerminal(nextNonWS(), "identifier")) { // then we have a named enum
+	if (!isTerminal(nextNonWS(), "identifier")) { // then we have an anonymous enum
+		cpt = getEnumOpts();
+	} else { // a named enum.
 		enumTypeName = demand("identifier").symbol;
-		cPrimeType cpt = sts.lookupType("enum " ~ enumTypeName);
+		cpt = sts.lookupType("enum " ~ enumTypeName);
 		if (cpt !is null) { // then this type exists
 			newEnum.type = cpt;
 			// so the next token had better be an identifier
@@ -265,37 +267,42 @@ Entry getCEnum() {
 			sts.addSymbol(newEnum.name, cpt); // and add it to the symbol table
 			return newEnum;
 		} else { // then we're defining this enum right now
-			cpt = new cPrimeType(enumTypeName, cPType.C_ENUM, true);
-			demand("{");
-			while (nextNonWS().symbol != "}") {
-				if (isTerminal(nextNonWS(), "identifier")) {
-					string enumOptName = demand("identifier").symbol;
-					if (isTerminal(nextNonWS(), "=")) {
-						next++;
-						int val = demand("numberConstant").ival;
-						cpt.addEnumOpt(enumOptName, val, true);
-					} else {
-						cpt.addEnumOpt(enumOptName, 0, false);
-					}
-					if (isTerminal(nextNonWS(),","))
-						next++;
-				}
-				else
-					throw new Exception("Improper enum specification.");
+			cpt = getEnumOpts();
+		}
+	}
+	// if we're still here, we've defined an enum. Now we could have a variable or not.
+	if (isTerminal(nextNonWS(), "identifier")) { // then we do.
+		newEnum.name = demand("identifier").symbol;
+		sts.addSymbol(newEnum.name, cpt);
+		return newEnum;
+	} else { // then we don't.
+		if (!isTerminal(nextNonWS(), ";"))
+			throw new Exception("Missing semicolon after enum " ~ newEnum.name);
+		return null; // don't return a variable... since there wasn't any
+	}
+}
+
+cPrimeType getEnumOpts() {
+	cPrimeType cpt = new cPrimeType(enumTypeName, cPType.C_ENUM, true);
+	demand("{");
+	while (nextNonWS().symbol != "}") {
+		if (isTerminal(nextNonWS(), "identifier")) {
+			string enumOptName = demand("identifier").symbol;
+			if (isTerminal(nextNonWS(), "=")) {
+				next++;
+				int val = demand("numberConstant").ival;
+				cpt.addEnumOpt(enumOptName, val, true);
+			} else {
+				cpt.addEnumOpt(enumOptName, 0, false);
 			}
+			if (isTerminal(nextNonWS(),","))
+				next++;
 		}
-		// now we could have a variable or not.
-		if (isTerminal(nextNonWS(), "identifier") { // then we do.
-			newEnum.name = demand("identifier").symbol;
-			sts.addSymbol(newEnum.name, cpt);
-			return newEnum;
-		} else { // then we don't.
-			if (!isTerminal(nextNonWS(), ";"))
-				throw new Exception("Missing semicolon after enum " ~ newEnum.name);
-			return null; // don't return a variable... since there wasn't any
-		}
-	} else { // we have an anonymous enum.
-	return newCContainer;
+		else
+			throw new Exception("Improper enum specification.");
+	}
+	demand("}");
+	return cpt;
 }
 
 Entry getVariable() {
